@@ -954,3 +954,484 @@ class OddEvenThreads
     }
 }
 ```
+
+#### Student with attributes
+
+``` java
+public class Student {
+    private int rollNumber;
+    private String name;
+    private int[] marks;
+
+    // Constructor
+    public Student(int rollNumber, String name, int[] marks) {
+        this.rollNumber = rollNumber;
+        this.name = name;
+        this.marks = marks;
+    }
+
+    // Method to calculate total marks
+    public int calculateTotalMarks() {
+        int total = 0;
+        for (int mark : marks) {
+            total += mark;
+        }
+        return total;
+    }
+
+    // Method to calculate percentage
+    public double calculatePercentage() {
+        int totalMarks = calculateTotalMarks();
+        return (double) totalMarks / marks.length;
+    }
+
+    // Getters and setters
+    public int getRollNumber() {
+        return rollNumber;
+    }
+
+    public void setRollNumber(int rollNumber) {
+        this.rollNumber = rollNumber;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int[] getMarks() {
+        return marks;
+    }
+
+    public void setMarks(int[] marks) {
+        this.marks = marks;
+    }
+
+    // Example usage in main method
+    public static void main(String[] args) {
+        int[] marks = {85, 90, 95, 80, 75};
+        Student student = new Student(1, "John Doe", marks);
+
+        int totalMarks = student.calculateTotalMarks();
+        double percentage = student.calculatePercentage();
+
+        System.out.println("Total Marks: " + totalMarks);
+        System.out.println("Percentage: " + percentage);
+    }
+}
+```
+
+#### Geometric shape abstract class
+
+```java
+// Abstract class GeometricShape
+abstract class GeometricShape {
+    // Abstract method area (to be implemented by subclasses)
+    public abstract double area();
+}
+
+// Rectangle class inheriting from GeometricShape
+class Rectangle extends GeometricShape {
+    // Fields
+    private double length;
+    private double width;
+
+    // Constructor
+    public Rectangle(double length, double width) {
+        this.length = length;
+        this.width = width;
+    }
+
+    // Implementing the area method for Rectangle
+    @Override
+    public double area() {
+        return length * width;
+    }
+}
+
+// Circle class inheriting from GeometricShape
+class Circle extends GeometricShape {
+    // Field
+    private double radius;
+
+    // Constructor
+    public Circle(double radius) {
+        this.radius = radius;
+    }
+
+    // Implementing the area method for Circle
+    @Override
+    public double area() {
+        return Math.PI * radius * radius;
+    }
+}
+
+// Main class to demonstrate usage
+public class Main {
+    public static void main(String[] args) {
+        // Example usage of Rectangle
+        Rectangle rectangle = new Rectangle(5, 3);
+        System.out.println("Area of Rectangle: " + rectangle.area());
+
+        // Example usage of Circle
+        Circle circle = new Circle(4);
+        System.out.println("Area of Circle: " + circle.area());
+    }
+}
+```
+
+#### Leap year
+
+```java
+import java.util.Scanner;
+
+public class LeapYearChecker {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter a year: ");
+        int year = scanner.nextInt();
+
+        if (isLeapYear(year)) {
+            System.out.println(year + " is a leap year.");
+        } else {
+            System.out.println(year + " is not a leap year.");
+        }
+
+        scanner.close();
+    }
+
+    public static boolean isLeapYear(int year) {
+        // Leap year logic:
+        // A year is a leap year if it is divisible by 4,
+        // but not divisible by 100, except if it is also divisible by 400.
+
+        if (year % 4 == 0) {
+            if (year % 100 == 0) {
+                if (year % 400 == 0) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                return true;
+            }
+        } else {
+            return false;
+        }
+    }
+}
+```
+
+#### Calculate area
+
+```java
+// Shape class (base class)
+abstract class Shape {
+    // Abstract method to calculate area (to be overridden by subclasses)
+    public abstract double area();
+}
+
+// Square class (subclass of Shape)
+class Square extends Shape {
+    private double side;
+
+    public Square(double side) {
+        this.side = side;
+    }
+
+    @Override
+    public double area() {
+        return side * side;
+    }
+}
+
+// Triangle class (subclass of Shape)
+class Triangle extends Shape {
+    private double base;
+    private double height;
+
+    
+    public Triangle(double base, double height) {
+        this.base = base;
+        this.height = height;
+    }
+
+    
+    @Override
+    public double area() {
+        return 0.5 * base * height;
+    }
+}
+
+// Main class to demonstrate usage
+public class Main {
+    public static void main(String[] args) {
+        // Creating a Square object
+        Square square = new Square(5);
+        System.out.println("Area of Square: " + square.area());
+
+        // Creating a Triangle object
+        Triangle triangle = new Triangle(4, 3);
+        System.out.println("Area of Triangle: " + triangle.area());
+    }
+}
+```
+
+#### Vehicle details
+
+```java
+// Base class Vehicle
+class Vehicle {
+    protected String make;
+    protected String model;
+
+    // Constructor
+    public Vehicle(String make, String model) {
+        this.make = make;
+        this.model = model;
+    }
+
+    // Method to display vehicle details
+    public void displayDetails() {
+        System.out.println("Make: " + make);
+        System.out.println("Model: " + model);
+    }
+}
+
+// Derived class Car from Vehicle
+class Car extends Vehicle {
+    private int numberOfDoors;
+
+    // Constructor
+    public Car(String make, String model, int numberOfDoors) {
+        super(make, model);
+        this.numberOfDoors = numberOfDoors;
+    }
+
+    // Method to display car details, overriding the displayDetails method of Vehicle
+    @Override
+    public void displayDetails() {
+        super.displayDetails(); // Call displayDetails method of Vehicle class
+        System.out.println("Number of doors: " + numberOfDoors);
+    }
+}
+
+// Main class to test Vehicle and Car classes
+public class Main {
+    public static void main(String[] args) {
+        // Creating an instance of Car
+        Car myCar = new Car("Toyota", "Camry", 4);
+
+        // Displaying car details
+        myCar.displayDetails();
+    }
+}
+```
+
+#### Even odd checker
+
+```java
+import java.util.Scanner;
+
+public class EvenOddChecker {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.print("Enter a number: ");
+        int number = scanner.nextInt();
+        
+        if (number % 2 == 0) {
+            System.out.println(number + " is even.");
+        } else {
+            System.out.println(number + " is odd.");
+        }
+        
+        scanner.close();
+    }
+}
+```
+
+#### Printer and colorprinter
+
+```java
+// Parent class Printer
+class Printer {
+    // Method to print a message
+    public void print(String message) {
+        System.out.println(message);
+    }
+}
+
+// Subclass ColorPrinter extending Printer
+class ColorPrinter extends Printer {
+    // Override the print method to print colored message
+    @Override
+    public void print(String message) {
+        // Assuming you have a method to print in color
+        printInColor(message);
+    }
+    
+    // Method to print message in color
+    private void printInColor(String message) {
+        // Example implementation to print message in color
+        System.out.println("\u001B[31m" + message + "\u001B[0m"); // Red color ANSI escape code
+    }
+}
+
+// Main class to test the Printer and ColorPrinter classes
+public class Main {
+    public static void main(String[] args) {
+        Printer printer = new Printer();
+        printer.print("This is a message from Printer.");
+        
+        ColorPrinter colorPrinter = new ColorPrinter();
+        colorPrinter.print("This is a colored message from ColorPrinter.");
+    }
+}
+```
+
+#### Factorial
+
+```java
+import java.util.Scanner;
+
+public class Factorial {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a non-negative integer: ");
+        
+        // Input validation
+        while (!scanner.hasNextInt()) {
+            System.out.println("Invalid input. Please enter a valid non-negative integer:");
+            scanner.next(); // consume the invalid input
+        }
+        
+        int n = scanner.nextInt();
+        scanner.close();
+        
+        if (n < 0) {
+            System.out.println("Error: Factorial is defined only for non-negative integers.");
+        } else {
+            long factorial = computeFactorial(n);
+            System.out.println("Factorial of " + n + " is: " + factorial);
+        }
+    }
+    
+    // Function to compute factorial
+    public static long computeFactorial(int n) {
+        if (n == 0 || n == 1) {
+            return 1;
+        } else {
+            long factorial = 1;
+            for (int i = 2; i <= n; i++) {
+                factorial *= i;
+            }
+            return factorial;
+        }
+    }
+}
+```
+
+#### Abstract class Transport
+
+```java
+// Abstract class Transport
+abstract class Transport {
+    // Abstract method move (to be implemented by subclasses)
+    public abstract void move();
+}
+
+// Concrete subclass Car
+class Car extends Transport {
+    // Implementing the move method specific to Car
+    @Override
+    public void move() {
+        System.out.println("Car is moving on the road.");
+        // Additional code specific to Car's movement can be added here
+    }
+}
+
+// Concrete subclass Bicycle
+class Bicycle extends Transport {
+    // Implementing the move method specific to Bicycle
+    @Override
+    public void move() {
+        System.out.println("Bicycle is moving on the path.");
+        // Additional code specific to Bicycle's movement can be added here
+    }
+}
+
+// Main class to demonstrate the usage
+public class Main {
+    public static void main(String[] args) {
+        // Creating instances of Car and Bicycle
+        Car myCar = new Car();
+        Bicycle myBicycle = new Bicycle();
+        
+        // Calling move method on Car instance
+        myCar.move();
+        
+        // Calling move method on Bicycle instance
+        myBicycle.move();
+    }
+}
+```
+
+#### Employee details
+
+```java
+// Base class Employee
+class Employee {
+    // Attributes of Employee
+    protected String name;
+    protected double salary;
+    
+    // Constructor for Employee
+    public Employee(String name, double salary) {
+        this.name = name;
+        this.salary = salary;
+    }
+    
+    // Method to display employee details
+    public void displayDetails() {
+        System.out.println("Employee Name: " + name);
+        System.out.println("Employee Salary: $" + salary);
+    }
+}
+
+// Derived class Manager inheriting from Employee
+class Manager extends Employee {
+    // Additional attribute specific to Manager
+    private String department;
+    
+    // Constructor for Manager
+    public Manager(String name, double salary, String department) {
+        super(name, salary); // Call to superclass (Employee) constructor
+        this.department = department;
+    }
+    
+    // Method to display manager details (overrides displayDetails() in Employee)
+    @Override
+    public void displayDetails() {
+        super.displayDetails(); // Call superclass method to display basic details
+        System.out.println("Manager Department: " + department);
+    }
+}
+
+// Main class to demonstrate usage
+public class Main {
+    public static void main(String[] args) {
+        // Creating a Manager object
+        Manager manager1 = new Manager("John Doe", 80000, "Sales");
+        
+        // Displaying manager details
+        System.out.println("Manager Details:");
+        manager1.displayDetails();
+    }
+}
+```
